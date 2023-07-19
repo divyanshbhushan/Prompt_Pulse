@@ -93,11 +93,12 @@
   background-image: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%);
 }
 .desc {
-  @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
+  @apply mt-24 text-lg text-gray-600 sm:text-xl max-w-4xl;
 }
 
 .search_input {
-  @apply block rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0 w-8/12 mt-6;
+  @apply block rounded-md border border-gray-200 bg-white py-2.5  pl-5 pr-12 text-sm shadow-lg font-medium  
+  focus:border-gray-400 focus:outline-none focus:ring-0 mt-6;
 }
 
 .copy_btn {
@@ -107,10 +108,9 @@
 .glassmorphism {
   @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
 }
-
-
-/* Feed Component */
-
+.w_60vw{
+  width: 60vw;
+}
 /* Form Component */
 .form_textarea {
   @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
@@ -122,7 +122,7 @@
 
 /* Nav Component */
 .logo_text {
-  @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+  @apply max-sm:hidden font-semibold text-lg text-black tracking-wide;
 }
 
 .dropdown {
@@ -130,7 +130,7 @@
 }
 
 .dropdown_link {
-  @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
+  @apply text-sm text-gray-700 hover:text-gray-500 font-medium;
 }
 
 /* PromptCard Component */

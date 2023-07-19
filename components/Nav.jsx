@@ -8,8 +8,14 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 const Nav = () => {
   const toggleNavbar = ()=>{
     let mobileNav = document.getElementById('mobileNav');
-    mobileNav.classList.toggle('hidden');
+    if (mobileNav.classList.contains('hidden')) {
+      mobileNav.classList.remove('hidden');
+    }
+    else {
+          mobileNav.classList.add('hidden');
+        }
   }
+
   const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
@@ -22,52 +28,6 @@ const Nav = () => {
     })();
   }, []);
 
-    // Search states
-    const [searchText, setSearchText] = useState("");
-    const [searchTimeout, setSearchTimeout] = useState(null);
-    const [searchedResults, setSearchedResults] = useState([]);
-    const [allPosts, setAllPosts] = useState([]);
-  
-    const fetchPosts = async () => {
-      const response = await fetch("/api/prompt");
-      const data = await response.json();
-  
-      setAllPosts(data);
-    };
-  
-    useEffect(() => {
-      fetchPosts();
-    }, []);
-  
-    const filterPrompts = (searchtext) => {
-      const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
-      return allPosts.filter(
-        (item) =>
-          regex.test(item.creator.username) ||
-          regex.test(item.tag) ||
-          regex.test(item.prompt)
-      );
-    };
-  
-    const handleSearchChange = (e) => {
-      clearTimeout(searchTimeout);
-      setSearchText(e.target.value);
-  
-      // debounce method
-      setSearchTimeout(
-        setTimeout(() => {
-          const searchResult = filterPrompts(e.target.value);
-          setSearchedResults(searchResult);
-        }, 500)
-      );
-    };
-  
-    const handleTagClick = (tagName) => {
-      setSearchText(tagName);
-  
-      const searchResult = filterPrompts(tagName);
-      setSearchedResults(searchResult);
-    };
   return (
     <>
     <nav className='flex justify-between flex-between w-full mb-16 max-md:mb-3 py-1 border-b-2 h-20 border-gray-300 px-11 sticky top-0 bg-gray-50 z-30 max-md:px-4'>
@@ -96,20 +56,11 @@ const Nav = () => {
             </Link>
           </li>
           <li className='sm:w-1/2'>
-            <Link href='/contact' className='text-gray-500 hover:text-gray-900 mx-2 hover:border-b-2 border-violet-700'>
+            <Link href='/contact-s' className='text-gray-500 hover:text-gray-900 mx-2 hover:border-b-2 border-violet-700'>
               Contact
             </Link>
           </li>
-          <form className='relative w-full flex-center my-11'>
-        <input
-          type='text'
-          placeholder='Search for a tag or a username'
-          value={searchText}
-          onChange={handleSearchChange}
-          required
-          className='search_input peer '
-        />
-      </form>
+          
         </ul>
               {/* Mobile Navigation Toggler */}
               <button type="button" className="mr-3 hidden max-md:block" onClick={toggleNavbar}>
@@ -137,7 +88,7 @@ const Nav = () => {
                 </Link>
                 <Link
                   href='/create-prompt'
-                  className='dropdown_link'
+                  className='dropdown_link max-md:hidden'
                   onClick={() => setToggleDropdown(false)}
                 >
                   Create Prompt
@@ -183,16 +134,30 @@ const Nav = () => {
              Home
             </Link>
           </li>
+          {session?.user ? (
+              <li className="py-4 w-full text-center">
+                <Link
+                  href="/create-prompt"
+                  className="text-gray-500 hover:text-gray-900 mx-2 hover:border-b-2 border-violet-700"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Create Prompt
+                </Link>
+              </li>
+            ) : (
+              <li className=" hidden"></li>
+            )}
           <li className=' py-4 w-full text-center'>
             <Link href='/about' className='text-gray-500 hover:text-gray-900 mx-2 hover:border-b-2 border-violet-700'>
               About
             </Link>
           </li>
           <li className=' py-4 w-full text-center'>
-            <Link href='/contact' className='text-gray-500 hover:text-gray-900 mx-2 hover:border-b-2 border-violet-700'>
+            <Link href='/contact-us' className='text-gray-500 hover:text-gray-900 mx-2 hover:border-b-2 border-violet-700'>
               Contact
             </Link>
           </li>
+
         </ul>
     </nav>
     </>
