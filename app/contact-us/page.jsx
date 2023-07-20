@@ -22,16 +22,16 @@ const Contact = () => {
   
        <div className="flex w-10/12 items-center mt-10 justify-evenly">
         <a href="mailto:contact@divyanshbhushan.xyz">
-        <i class="bi bi-envelope-fill text-gray-600 text-2xl"></i>
+        <i class="bi bi-envelope-fill text-gray-600 text-2xl hover:text-violet-500"></i>
         </a>
         <a href="">
-          <i class="bi bi-instagram text-gray-600 text-2xl"></i>
+          <i class="bi bi-instagram text-gray-600 text-2xl hover:text-violet-500"></i>
         </a>
         <a href="">
-          <i className="bi bi-facebook text-2xl text-gray-600"></i>
+          <i className="bi bi-facebook text-2xl text-gray-600 hover:text-violet-500"></i>
         </a>
         <a href="">
-          <i className="bi bi-twitter text-2xl text-gray-600"></i>
+          <i className="bi bi-twitter text-2xl text-gray-600 hover:text-violet-500"></i>
         </a>
        </div>
     </div>
