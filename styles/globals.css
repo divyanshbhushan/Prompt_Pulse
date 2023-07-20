@@ -153,3 +153,9 @@
 .font-poppins{
   font-family: 'Poppins', sans-serif;
 }
+
+/* Contact Card components  */
+.contact_card{
+  width: 50rem;
+  height: 27rem;
+}
